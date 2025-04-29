@@ -1,0 +1,48 @@
+.footer {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 1.5rem; /* Space between icons */
+  }
+  
+  .socialIcons a {
+    color: var(--text-light);
+    font-size: 1.5rem; /* Icon size */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .socialIcons a:hover {
+    color: var(--primary-color); /* Highlight color on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+  }
+  
+  .copyright {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7); /* Slightly muted text */
+  }
+  
+  @media screen and (min-width: 768px) {
+     .footerContainer {
+       flex-direction: row; /* Layout side-by-side on larger screens */
+       justify-content: space-between;
+     }
+     .socialIcons {
+       order: 1; /* Move icons to the right */
+     }
+      .copyright {
+       order: 0; /* Move copyright to the left */
+     }
+  }
+  

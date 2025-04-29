@@ -1,0 +1,71 @@
+/* src/sections/Projects/Projects.module.css */
+
+.projects {
+  /* --- UPDATED GRADIENT --- */
+  background: linear-gradient(
+    160deg,
+    hsla(211, 75%, 44%, 0.733) 0%, /* Start with primary tint */
+    var(--background-light) 80%   /* End light */
+  );
+  /* --- END UPDATED GRADIENT --- */
+  padding: var(--section-padding);
+  overflow: hidden; /* Prevent animation overflow */
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* --- Animation Styles --- */
+.projectItemWrapper {
+   /* This wrapper helps apply animation without interfering with card styles */
+   height: 100%; /* Ensure wrapper takes full grid cell height */
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateFadeInUp {
+  opacity: 0; /* Start hidden */
+  animation: fadeInUp 0.7s ease-out forwards;
+  /* Delay is applied inline via style prop */
+}
+/* --- End Animation Styles --- */
+
+
+/* Two columns on medium screens */
+@media screen and (min-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Three columns on large screens */
+@media screen and (min-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem; /* Adjust gap as needed */
+  }
+}
+
+/* Optional: Adjust gap for very large screens */
+@media screen and (min-width: 1440px) {
+  .projectsGrid {
+     gap: 2.2rem;
+  }
+}

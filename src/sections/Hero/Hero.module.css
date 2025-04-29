@@ -1,0 +1,174 @@
+/* src/sections/Hero/Hero.module.css */
+
+.hero {
+  /* --- MODIFIED --- */
+  /* Gradient from light background to a very subtle primary color tint */
+  /* Adjust angle (160deg) and color stops (60%, 100%) as needed */
+  /* Assumes --primary-color is #007bff -> rgb(0, 123, 255) */
+  background: linear-gradient(
+    160deg,
+    var(--background-light) 20%,
+    hsla(211, 75%, 44%, 0.733) 100%
+  );
+  /* --- END MODIFIED --- */
+
+  padding: 6rem 0 4rem; /* Adjust padding as needed */
+  min-height: 80vh; /* Ensure it takes up significant viewport height */
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Prevent animation overflow issues */
+  position: relative; /* For potential future pseudo-elements */
+}
+
+.heroContainer {
+  /* Using the container class from App.css for max-width and centering */
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column; /* Default: Stack elements */
+  align-items: center;
+  text-align: center;
+  gap: 2rem; /* Space between text and image when stacked */
+}
+
+.heroText {
+  max-width: 600px;
+  margin-top: -40px; /* Limit text width for readability */
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #5a6268;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  min-height: 2.4em; /* Optional: Add min-height to prevent layout shift */
+                      /* Adjust value based on font size and line height */
+  display: inline-block; /* Helps with height calculation */
+}
+
+
+.heroDescription {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+   /* --- Potential Adjustment --- */
+  /* Ensure this color has enough contrast */
+  /* color: var(--text-dark); <-- Using variable from index.css */
+   color: #333; /* Default dark text */
+   /* --- End Adjustment --- */
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.heroImageContainer {
+   /* Style the container if needed, e.g., for borders or shadows */
+   max-width: 300px; /* Control max image size */
+   width: 70%; /* Responsive width */
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  /* --- MODIFIED --- */
+  border-radius: 50%; /* Make it circular */
+  /* --- END MODIFIED --- */
+  object-fit: cover;
+  /* --- Potential Adjustment --- */
+  /* Use a variable for the border color if defined, e.g., --primary-color-light */
+  /* border: 5px solid var(--primary-color-light); */
+  border: 5px solid rgba(0, 123, 255, 0.2); /* Lighter, transparent primary border */
+  /* --- End Adjustment --- */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* --- REMOVED --- */
+  transform: rotate(-90deg); 
+}
+
+.heroButton {
+  /* Inherits button-primary styles */
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions */
+   margin-bottom: 30px;
+}
+
+
+.heroButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Animation --- */
+
+/* Define the keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to elements */
+/* Use 'forwards' to keep the final state */
+.fadeInUp {
+  opacity: 0; /* Start hidden */
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger animations using delays */
+.delay1 { animation-delay: 0.2s; }
+.delay2 { animation-delay: 0.4s; }
+.delay3 { animation-delay: 0.6s; }
+.delay4 { animation-delay: 0.3s; } /* Image can fade in slightly earlier or later */
+
+
+/* --- Responsive Layout (Tablet & Desktop) --- */
+@media (min-width: 768px) {
+  .hero {
+    padding: 8rem 0 6rem; /* More padding on larger screens */
+    min-height: 90vh;
+  }
+
+  .heroContent {
+    flex-direction: row; /* Side-by-side layout */
+    justify-content: space-between; /* Space out text and image */
+    align-items: center;
+    text-align: left; /* Align text to the left */
+    gap: 3rem; /* Increase gap */
+  }
+
+  .heroText {
+     flex: 1 1 60%; /* Allow text to take more space */
+     max-width: none; /* Remove max-width */
+     order: 1; /* Text first */
+  }
+
+  .heroImageContainer {
+    flex: 1 1 35%; /* Image takes less space */
+    max-width: 350px; /* Slightly larger max size */
+    order: 2; /* Image second */
+    width: auto; /* Reset width */
+  }
+
+  /* Adjust animation delays if needed for the side-by-side view */
+  .delay4 { animation-delay: 0.5s; } /* Example: delay image slightly more */
+}
+
+@media (min-width: 1024px) {
+    .heroImageContainer {
+        max-width: 400px; /* Even larger on desktop */
+    }
+     .heroContent {
+        gap: 4rem;
+     }
+}

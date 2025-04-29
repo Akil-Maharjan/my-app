@@ -1,0 +1,125 @@
+/* src/sections/Skills/Skills.module.css */
+
+.skills {
+  /* Keep the gradient background for the section */
+  background: linear-gradient(
+    160deg,
+    var(--background-light) 20%, /* Starts light */
+    hsla(211, 75%, 44%, 0.733) 80% /* Ends with primary tint */
+  );
+  padding: var(--section-padding); /* Ensure padding is applied */
+  overflow: hidden; /* Prevent animation overflow issues */
+}
+.skillLink {
+  text-decoration: none; /* Remove default underline */
+  color: inherit; /* Prevent default link blue color */
+  display: inline-block; /* Helps with layout */
+  line-height: 1; /* Match icon line-height */
+  margin-bottom: 0.8rem; /* Move margin from .skillIcon to the link */
+  transition: transform 0.3s ease; /* Add transition for potential hover effect */
+}
+
+/* Use the global h2 styling, no need to override unless necessary */
+.skillLink:hover {
+  transform: scale(1.1); /* Slightly scale up the link area */
+}
+.skillLink:hover .skillIcon {
+  color: var(--secondary-color); /* Change icon color on hover (adjust color) */
+}
+.skillsGrid {
+  display: grid;
+  /* Adjust minmax for potentially larger items with icons */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.5rem; /* Keep the gap */
+  text-align: center;
+}
+
+.skillItem {
+  /* --- MODIFIED --- */
+  background-color: var(--background-light); /* Use solid light background for contrast */
+  padding: 1.8rem 1rem; /* Slightly more padding */
+  border-radius: 10px; /* Slightly larger radius */
+  /* Softer, more modern shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  /* --- IMPORTANT: Ensure transform is included in the transition --- */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added background-color transition */
+  display: flex; /* Use flexbox for better alignment */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: 150px;
+  /* --- Add this if items feel 'jumpy' on hover due to scaling/transform origin --- */
+  /* transform-origin: center bottom; */ /* Optional: Might help stabilize visual */
+}
+
+ .skillItem:hover{
+  /* --- Apply the transform --- */
+  transform: translateY(-10px) scale(1.1) !important; /* This should move the item up */
+  /* --- Update shadow --- */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  /* --- Test background color (remove if not needed) --- */
+  
+}
+
+.skillIcon {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  /* margin-bottom: 0.8rem; <-- REMOVED, moved to .skillLink */
+  line-height: 1;
+  transition: color 0.3s ease; /* Add transition for color change on hover */
+}
+
+.skillName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-top: auto; /* Push name to bottom if card height varies */
+}
+
+
+/* --- Animation Styles --- */
+
+/* Initial hidden state */
+.hidden {
+  opacity: 0;
+  transform: translateY(20px); /* Start slightly lower */
+}
+
+/* Keyframes (can reuse fadeInUp from About or define a new one) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation class */
+.animateFadeInUp {
+  /* Apply animation properties */
+  /* The delay is added inline in the JSX */
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* --- End Animation Styles --- */
+
+/* Responsive Adjustments (Optional) */
+@media (max-width: 480px) {
+  .skillsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); /* Smaller items on very small screens */
+    gap: 1rem;
+  }
+  .skillItem {
+    padding: 1.5rem 0.8rem;
+  }
+  .skillIcon {
+    font-size: 2.5rem;
+  }
+  .skillName {
+    font-size: 0.9rem;
+  }
+}

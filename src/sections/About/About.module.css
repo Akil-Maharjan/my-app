@@ -1,0 +1,152 @@
+/* src/sections/About/About.module.css */
+
+/* --- Existing Styles --- */
+.about {
+  /* Apply the gradient from the Hero section */
+  background: linear-gradient(
+    160deg,
+    hsla(211, 75%, 44%, 0.733) ,var(--background-light) 80% /* Starts light */
+     /* Ends with primary tint */
+  );
+  /* Add padding if not already present */
+  padding: 4rem 0; /* Adjust as needed */
+  overflow-x: hidden; /* Prevent horizontal scrollbars during animation */
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 2rem;
+  align-items: center;
+  text-align: left; /* Align text left for readability */
+}
+
+.aboutImageContainer {
+  display: flex;
+  justify-content: center; /* Center image horizontally on mobile */
+  align-items: center;
+}
+
+.aboutImage {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 3px solid var(--background-light);
+}
+
+.aboutText p {
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+.aboutText ul {
+  list-style: disc; /* Use standard bullets */
+  padding-left: 20px; /* Indent the list */
+  margin-bottom: 1rem; /* Space after the list */
+}
+
+.aboutText li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+/* --- NEW: Animation Styles --- */
+
+/* Initial state for elements before animation */
+.hidden {
+  opacity: 0;
+  /* visibility: hidden; <-- Alternative, but opacity is often better for transitions */
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px); /* Start off-screen to the left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Classes */
+.animateFadeInUp {
+  opacity: 0; /* Start hidden */
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.4s; /* Optional: Delay text slightly after image */
+}
+
+.animateSlideInLeft {
+  opacity: 0; /* Start hidden */
+  animation: slideInLeft 0.8s ease-out forwards;
+  animation-delay: 0.2s; /* Optional: Start image animation slightly earlier */
+}
+
+/* --- End Animation Styles --- */
+
+
+/* Layout for larger screens */
+@media screen and (min-width: 768px) {
+  .about {
+    padding: 6rem 0; /* More padding */
+  }
+  .aboutContent {
+    grid-template-columns: 1fr 2fr; /* Image on left, text on right */
+    text-align: left;
+    gap: 3rem;
+  }
+  .aboutImageContainer {
+    justify-content: flex-start;
+  }
+  .aboutImage {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* --- NEW: Adjust animation for larger screens if needed --- */
+  /* Keyframes for sliding from right (if text was on the left) */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Example: If you wanted text to slide from right on desktop */
+  /*
+  .animateFadeInUp {
+     animation-name: slideInRight; // Change animation
+     animation-delay: 0.4s;
+  }
+  */
+  /* --- End Animation Adjustment --- */
+}
+
+@media screen and (min-width: 1024px) {
+  .aboutImage {
+    width: 350px;
+    height: 350px;
+  }
+  .aboutContent {
+    gap: 4rem;
+  }
+}
